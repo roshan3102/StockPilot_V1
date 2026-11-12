@@ -1,0 +1,23 @@
+[project]
+name = "stockpilot-backend"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.143.2",
+    # Runtime (not just tests): app/integrations/paypal.py makes the HTTP calls to PayPal.
+    "httpx>=0.28.1",
+    "openai>=3.31.0",
+    "pydantic-settings>=2.16.0",
+    "sqlalchemy>=2.0",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Lets tests do `from app.main import app` without installing the project as a package.
+pythonpath = ["."]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
